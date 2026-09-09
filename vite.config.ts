@@ -65,10 +65,12 @@ function aistudioMediaPlugin(): Plugin {
 // LINT.ThenChange(//depot/google3/java/com/google/alkali/boq/makersuite/applet_dev_service/templates/initializers/react_theme/vite.config.ts:aistudio_media_plugin)
 
 export default defineConfig(() => {
+  const isGitHubPagesBuild = process.env.GITHUB_ACTIONS === 'true';
+
   return {
-    // GitHub Pages serves this repository under /toolnova/.
-    // Relative asset URLs also remain compatible with Vercel/root deployments.
-    base: './',
+    // GitHub Pages project site: https://lidar4.github.io/toolnova/
+    // Vercel/root deployments continue to use '/'.
+    base: isGitHubPagesBuild ? '/toolnova/' : '/',
     plugins: [react(), tailwindcss(), aistudioMediaPlugin()],
     resolve: {
       alias: {
@@ -77,7 +79,6 @@ export default defineConfig(() => {
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
       // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
