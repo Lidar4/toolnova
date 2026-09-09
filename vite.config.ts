@@ -66,9 +66,10 @@ function aistudioMediaPlugin(): Plugin {
 
 export default defineConfig(() => {
   return {
-    // Relative asset URLs work on both GitHub Pages project sites
-    // (/toolnova/) and root deployments such as Vercel.
-    base: './',
+    // ToolNova is deployed as the GitHub Pages project site:
+    // https://lidar4.github.io/toolnova/
+    // Vite documents /<REPO>/ as the correct base for this deployment mode.
+    base: '/toolnova/',
     plugins: [react(), tailwindcss(), aistudioMediaPlugin()],
     resolve: {
       alias: {
