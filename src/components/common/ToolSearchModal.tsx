@@ -8,14 +8,14 @@ interface ToolSearchModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectTool: (toolId: string) => void;
-  recentToolIds: string[];
+  recentToolIds?: string[];
 }
 
 export const ToolSearchModal: React.FC<ToolSearchModalProps> = ({
   isOpen,
   onClose,
   onSelectTool,
-  recentToolIds,
+  recentToolIds = [],
 }) => {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
