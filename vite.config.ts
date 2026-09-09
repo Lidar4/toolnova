@@ -65,12 +65,10 @@ function aistudioMediaPlugin(): Plugin {
 // LINT.ThenChange(//depot/google3/java/com/google/alkali/boq/makersuite/applet_dev_service/templates/initializers/react_theme/vite.config.ts:aistudio_media_plugin)
 
 export default defineConfig(() => {
-  const isGitHubPagesBuild = process.env.GITHUB_ACTIONS === 'true';
-
   return {
-    // GitHub Pages project site: https://lidar4.github.io/toolnova/
-    // Vercel/root deployments continue to use '/'.
-    base: isGitHubPagesBuild ? '/toolnova/' : '/',
+    // Relative asset URLs work on both GitHub Pages project sites
+    // (/toolnova/) and root deployments such as Vercel.
+    base: './',
     plugins: [react(), tailwindcss(), aistudioMediaPlugin()],
     resolve: {
       alias: {
